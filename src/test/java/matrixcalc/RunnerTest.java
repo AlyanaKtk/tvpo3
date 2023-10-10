@@ -7,13 +7,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/features",
-        glue = "matrixcalc.test.java.matrixcalc",
-        tags = "@all",
-        dryRun = false,
-        strict = true,
-        snippets = CucumberOptions.SnippetType.UNDERSCORE,
-        name = "^Успешное|Успешная.*"
+        features = "src/test/features/multnum.feature",
+        glue = "matrixcalc"
+
 )
 
 public class RunnerTest {

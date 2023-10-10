@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -17,10 +18,10 @@ public class Stepdefs
     private int num;
     private int[][] result;
 
-    @Given("I have entered [[{int}, {int}, {int}], [{int}, {int}, {int}], [{int}, {int}, {int}]] into the calculator")
+    @Given("I have entered {int}, {int}, {int}, {int}, {int}, {int}, {int}, {int}, {int} into the calculator")
     public void iHaveEnteredIntoTheCalculator(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8) {
-        this.matrix = new int[][]{{arg0, arg1, arg2}, {arg3, arg4, arg5}, {arg5, arg6, arg7}};
 
+        this.matrix = new int[][]{{arg0, arg1, arg2}, {arg3, arg4, arg5}, {arg5, arg6, arg7}};
     }
 
     @And("I have entered {int} into the calculator")
@@ -37,12 +38,16 @@ public class Stepdefs
     }
 
 
-    @Then("the result should be [[{int}, {int}, {int}], [{int}, {int}, {int}], [{int}, {int}, {int}]] on the screen")
+    @Then("the result should be {int}, {int}, {int}, {int}, {int}, {int}, {int}, {int}, {int} on the screen")
     public void theResultShouldBeOnTheScreen(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8) {
         int[][] expectedAnswer = new int[][]{{arg0, arg1, arg2}, {arg3, arg4, arg5}, {arg5, arg6, arg7}};
+        for (int i = 0; i < expectedAnswer.length; i++)
+            for (int j = 0; j < expectedAnswer.length; j++)
+                Assert.assertEquals(expectedAnswer[i][j], result[i][j]);
 
-        if (!Objects.equals(result, expectedAnswer)) {
-            throw new AssertionError("Expected " + Arrays.deepToString(expectedAnswer) + " but was " + Arrays.deepToString(result));
-        }
     }
+
+
+
+
 }
