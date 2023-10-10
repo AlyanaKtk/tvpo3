@@ -1,9 +1,11 @@
 package matrixcalc;
 
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
-public class testsummatrix extends TestCase {
+import static org.testng.Assert.assertThrows;
+
+public class testsummatrix {
 
     @Test
     public void testMatrixSum()
@@ -15,9 +17,18 @@ public class testsummatrix extends TestCase {
         int[][] matrixC = mtrx.add(matrixA, matrixB);
         for (int i = 0; i < matrixA.length; i++)
             for (int j = 0; j < matrixA.length; j++)
-                assertEquals(matrixC[i][j], matrixCAnswer[i][j]);
+                Assert.assertEquals(matrixC[i][j], matrixCAnswer[i][j]);
 
 
+    }
+
+    @Test
+    public void testSumException()
+    {
+        int[][] matrixA = {{1, 2, 3}, {4,7,9}, {8, 11, 0}};
+        int[][] matrixB = {{8, 13, 3, 6}, {5,0,9}, {14, 1, 8}};
+        matrix mtrx = new matrix();
+        assertThrows(IllegalArgumentException.class, () -> mtrx.add(matrixA, matrixB));
     }
 
 

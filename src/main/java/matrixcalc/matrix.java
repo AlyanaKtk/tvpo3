@@ -1,12 +1,11 @@
 package matrixcalc;
 
 public class matrix {
-    public int[][] add(int[][] A, int[][] B)
+public int[][] add(int[][] A, int[][] B)
     {
         if (A.length != B.length || A[0].length != B[0].length)
         {
-            System.out.println("Матрицы неравны");
-            return null;
+            throw new IllegalArgumentException("Матрицы неравны");
         }
         int C[][] = new int[A.length][A.length];
         for (int i = 0; i < A.length; i++)
@@ -15,4 +14,5 @@ public class matrix {
         return C;
 
     }
+
 }
